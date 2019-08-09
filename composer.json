@@ -1,0 +1,66 @@
+{
+  "name": "rosell-dk/webp-convert-concat",
+  "description": "Concatenated version of webp-convert",
+  "type": "project",
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "ci": [
+      "@build",
+      "@test",
+      "@composer validate --no-check-all --strict",
+      "@phpstan-global"
+    ],
+    "test": [
+      "@test-wod-build",
+      "@test-webp-convert-build"
+    ],
+    "test-wod-build": [
+      "phpunit --no-coverage tests-wod-build",
+      "phpunit --no-coverage --bootstrap tests/bootstrap-wod-test.php vendor/rosell-dk/webp-convert/tests"
+    ],
+    "test-webp-convert-build": [
+      "phpunit --no-coverage tests-webp-convert-build",
+      "phpunit --no-coverage --bootstrap tests/bootstrap-webp-convert-test.php vendor/rosell-dk/webp-convert/tests"
+    ],
+    "build": "php build-scripts/build.php"
+  },
+  "extra": {
+      "scripts-descriptions": {
+        "ci": "Run tests before CI",
+        "test": "Launches the preconfigured PHPUnit"
+      }
+  },
+  "autoload": {
+    "psr-4": { "WebPConvert\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "WebPConvert\\Tests\\": "tests/" }
+  },
+  "authors": [
+    {
+      "name": "Bjørn Rosell",
+      "homepage": "https://www.bitwise-it.dk/contact",
+      "role": "Project Author"
+    }
+  ],
+  "require": {
+      "php": "^5.6 | ^7.0",
+      "rosell-dk/webp-convert": "^2.1.5"
+  },
+  "suggest": {
+      "ext-gd": "to use GD extension for converting. Note: Gd must be compiled with webp support",
+      "ext-imagick": "to use Imagick extension for converting. Note: Gd must be compiled with webp support",
+      "ext-vips": "to use Vips extension for converting."
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7.27"
+  },
+  "config": {
+    "sort-packages": true,
+    "preferred-install": {
+      "rosell-dk/webp-convert": "source",
+        "*": "dist"
+    }
+  }
+}
